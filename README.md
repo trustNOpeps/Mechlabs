@@ -30,4 +30,4 @@ This directory is a **one-time source snapshot** of the Lovable project as of No
 
 For learning only. No ASTM/ISO certification, laboratory affiliation or safety-critical use. Browser-local data is not cloud-backed. The optional ratio σ/ε is a single-point secant slope, not a verified Young's modulus.
 
-The source includes deterministic engineering unit tests. The [original portfolio CI workflow](https://github.com/trustNOpeps/trustNOpeps/blob/main/.github/workflows/mechlabs-ci.yml) covered the source snapshot before extraction. A fresh standalone CI workflow has not yet been established here; do not treat presence of test files as proof of a run.
+The source includes deterministic engineering unit tests. See this repository's [standalone test and build workflow](.github/workflows/tests.yml) and its [Actions runs](https://github.com/trustNOpeps/mechlabs/actions) for the current results. The original [portfolio CI](https://github.com/trustNOpeps/trustNOpeps/blob/main/.github/workflows/mechlabs-ci.yml) also covered the snapshot before extraction. The public Lovable deployment may change independently of this archived source snapshot.
