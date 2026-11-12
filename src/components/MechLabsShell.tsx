@@ -82,7 +82,7 @@ export function MechLabsShell({ children }: { children: ReactNode }) {
               /
             </span>
             <span className="font-mono text-[11px] text-rail-muted truncate">
-              by trustNOpeps
+              by haammkaki
             </span>
           </div>
 

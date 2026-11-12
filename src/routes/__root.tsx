@@ -83,13 +83,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "MechLabs — Engineering Learning Workbench by trustNOpeps" },
+      { title: "MechLabs — Engineering Learning Workbench by haammkaki" },
       {
         name: "description",
         content:
           "Browser-local undergraduate mechanical engineering workbench for tensile stress-strain analysis, unit conversions, and user-entered material comparison.",
       },
-      { name: "author", content: "Hamka (trustNOpeps)" },
+      { name: "author", content: "haammkaki (haammkaki)" },
       { property: "og:title", content: "MechLabs — Engineering Learning Workbench" },
       {
         property: "og:description",
