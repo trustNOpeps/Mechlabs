@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e1410">
+  <meta name="description" content="MECH.OS — a browser-first mechanical engineering workbench for transparent shaft calculations, 3D preview, and design reporting.">
+  <title>MECH.OS — Engineering Workspace</title>
+  <link rel="stylesheet" href="src/styles.css">
+  <script src="src/engine.js" defer></script>
+  <script src="src/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="rail" aria-label="Workspace navigation">
+      <a href="#top" class="rail-mark" title="MECH.OS Home" aria-label="MECH.OS home">M<span>.</span></a>
+      <nav class="rail-nav" aria-label="Modules">
+        <a class="rail-link active" href="#top" aria-label="Workspace" title="Workspace" aria-current="page"><span aria-hidden="true">⌗</span></a>
+        <a class="rail-link" href="#preview-section" aria-label="Geometry" title="Geometry"><span aria-hidden="true">◇</span></a>
+        <a class="rail-link" href="#analysis-section" aria-label="Analysis" title="Analysis"><span aria-hidden="true">≋</span></a>
+        <a class="rail-link" href="#history-section" aria-label="Saved studies" title="Saved studies"><span aria-hidden="true">▤</span></a>
+        <a class="rail-link" href="#method-section" aria-label="Methods" title="Methods"><span aria-hidden="true">ⓘ</span></a>
+      </nav>
+      <div class="rail-bottom" title="Local-first workspace">LOCAL<br>MODE</div>
+    </aside>
+    <div class="page" id="top">
+      <header class="topbar">
+        <div class="breadcrumb"><strong>MECH.OS</strong><span>/</span><span>WORKSPACES</span><span>/</span><span class="breadcrumb-current">SHAFT STUDIO</span></div>
+        <div class="topbar-right"><span class="online-dot"></span><span>ENGINE ONLINE</span><span class="top-version">v0.2.0</span></div>
+      </header>
+      <main class="main">
+        <div class="heading-row">
+          <div>
+            <div class="eyebrow"><span class="tiny-square"></span> ENGINEERING INTELLIGENCE / 001</div>
+            <h1>Shaft <em>Studio.</em></h1>
+            <p class="lead">From first principles to a preliminary design decision.</p>
+          </div>
+          <div class="heading-actions">
+            <button type="button" id="loadExample" class="button ghost"><span aria-hidden="true">↺</span> Example</button>
+            <button type="button" id="saveStudy" class="button"><span aria-hidden="true">＋</span> Save study</button>
+            <button type="button" id="exportReport" class="button primary"><span aria-hidden="true">↓</span> Export report</button>
+          </div>
+        </div>
+        <div class="context-bar"><span>MODULE / 01</span><span>STATIC SOLID SHAFT</span><span class="context-spacer"></span><span>DETERMINISTIC ENGINE</span><span>·</span><span>RUNS LOCALLY</span></div>
+        <div class="workspace-grid">
+          <div class="input-column">
+            <section class="surface parameters" aria-labelledby="params-title">
+              <div class="surface-heading"><div><span class="section-index">01 / INPUT</span><h2 id="params-title">Design parameters</h2></div><span class="surface-decoration">●</span></div>
+              <label class="field full" for="designName"><span>Study name</span><input id="designName" type="text" maxlength="80" value="Shaft concept A" autocomplete="off"></label>
+              <label class="field full" for="material"><span>Material preset</span><select id="material"><option value="steel">Generic structural steel · example</option><option value="aluminium">Generic aluminium · example</option><option value="custom">Custom material</option></select></label>
+              <div class="form-block-title"><span>GEOMETRY</span><span>MM</span></div>
+              <div class="field-grid">
+                <label class="field" for="diameter"><span>Diameter</span><span class="input-unit"><input type="number" id="diameter" step="any" min="0.1" value="30" required><span>mm</span></span></label>
+                <label class="field" for="span"><span>Support span</span><span class="input-unit"><input type="number" id="span" step="any" min="0.1" value="400" required><span>mm</span></span></label>
+              </div>
+              <div class="form-block-title"><span>LOAD CONDITIONS</span><span>STATIC</span></div>
+              <div class="field-grid">
+                <label class="field" for="force"><span>Central force</span><span class="input-unit"><input type="number" id="force" step="any" min="0" value="1000" required><span>N</span></span></label>
+                <label class="field" for="torque"><span>Applied torque</span><span class="input-unit"><input type="number" id="torque" step="any" min="0" value="100" required><span>N·m</span></span></label>
+              </div>
+              <div class="form-block-title"><span>MATERIAL PROPERTIES</span><span>INPUT DATA</span></div>
+              <div class="field-grid">
+                <label class="field" for="yieldStrength"><span>Yield strength</span><span class="input-unit"><input type="number" id="yieldStrength" step="any" min="0.001" value="250" required><span>MPa</span></span></label>
+                <label class="field" for="elasticModulus"><span>Elastic modulus</span><span class="input-unit"><input type="number" id="elasticModulus" step="any" min="0.001" value="200" required><span>GPa</span></span></label>
+                <label class="field" for="density"><span>Density</span><span class="input-unit"><input type="number" id="density" step="any" min="0.001" value="7850" required><span>kg/m³</span></span></label>
+                <label class="field" for="requiredFoS"><span>Required FoS</span><span class="input-unit"><input type="number" id="requiredFoS" step="any" min="1" value="2" required><span>×</span></span></label>
+              </div>
+              <div class="form-block-title"><span>SERVICEABILITY & COST</span><span>OPTIONAL</span></div>
+              <div class="field-grid">
+                <label class="field" for="deflectionLimit"><span>Deflection limit</span><span class="input-unit"><input type="number" id="deflectionLimit" step="any" min="0" value="1.5" required><span>mm</span></span></label>
+                <label class="field" for="costPerKg"><span>Material price</span><span class="input-unit"><input type="number" id="costPerKg" step="any" min="0" value="25000" required><span>IDR/kg</span></span></label>
+                <label class="field full" for="allowance"><span>Cost allowance</span><span class="input-unit"><input type="number" id="allowance" step="any" min="0" value="20" required><span>%</span></span></label>
+              </div>
+              <div id="formError" class="form-error" role="alert" hidden></div>
+              <p class="field-note">Presets are illustrative — verify material data independently. A deflection limit of 0 disables the serviceability check.</p>
+            </section>
+          </div>
+          <div class="results-column">
+            <section class="surface viewport" id="preview-section" aria-labelledby="preview-title">
+              <div class="viewport-header"><div><span class="section-index">02 / MODEL</span><h2 id="preview-title">Geometry viewport <span class="subtle">/ ISO</span></h2></div><div class="viewport-tools"><button id="toggleWire" class="mini-button" type="button" aria-pressed="false">Wireframe</button><button id="resetView" class="mini-button" type="button">Reset view</button></div></div>
+              <div class="canvas-wrap"><canvas id="shaftCanvas" width="960" height="490" role="img" aria-label="Interactive orthographic shaft geometry preview. Drag with mouse or touch to rotate.">Shaft geometry preview</canvas><div class="canvas-top-left"><span class="viewport-chip"><span class="chip-dot"></span> LIVE GEOMETRY</span><span class="viewport-chip muted">SOLID Ø / mm</span></div><div class="canvas-bottom-left">DRAG TO ORBIT · MESH PREVIEW<br>NOT A MANUFACTURING DRAWING</div><div class="canvas-axis" aria-hidden="true"><span>X</span><span>Y</span><span>Z</span></div><div class="canvas-bottom-right">X<span id="viewTheta">32°</span> · Y<span id="viewPhi">18°</span></div></div>
+              <div class="viewport-bottom"><span><i class="dot lime"></i> SUPPORTS: SIMPLY SUPPORTED</span><span><i class="dot orange"></i> LOAD: MIDSPAN</span><span class="viewport-bottom-right">UNIT SYSTEM <b>MM / N / MPa</b></span></div>
+            </section>
+            <section class="surface analysis" id="analysis-section" aria-labelledby="analysis-title">
+              <div class="surface-heading analysis-header"><div><span class="section-index">03 / CHECK</span><h2 id="analysis-title">Analysis output</h2></div><span id="statusBadge" class="status-badge" aria-live="polite">CALCULATING</span></div>
+              <div class="analysis-main">
+                <div class="readout primary-readout"><span class="readout-label">VON MISES STRESS</span><strong id="vonMises">—</strong><span class="readout-unit">MPa</span><div class="readout-foot">COMBINED STATIC LOADING</div></div>
+                <div class="readout"><span class="readout-label">FACTOR OF SAFETY</span><strong id="factorOfSafety">—</strong><span class="readout-unit">×</span><div class="readout-foot" id="fosSub">TARGET ≥ 2.00</div></div>
+                <div class="readout"><span class="readout-label">MAX. DEFLECTION</span><strong id="deflection">—</strong><span class="readout-unit">mm</span><div class="readout-foot" id="deflectionSub">LIMIT 1.50 mm</div></div>
+              </div>
+              <div class="utilization"><div><span>Required yield utilization</span><strong id="utilizationText">—</strong></div><div class="utilization-track"><span id="utilizationFill"></span></div><div class="utilization-labels"><span>0%</span><span>100% / TARGET FoS</span></div></div>
+              <div class="checks"><div><span id="yieldIcon" class="check-icon">✓</span><span>Static yield criterion</span><strong id="yieldStatus">—</strong></div><div><span id="deflectionIcon" class="check-icon">✓</span><span>Deflection criterion</span><strong id="deflectionStatus">—</strong></div></div>
+            </section>
+          </div>
+        </div>
+        <div class="bottom-grid">
+          <section class="surface detail-card" aria-labelledby="detail-title">
+            <div class="surface-heading"><div><span class="section-index">04 / DERIVED</span><h2 id="detail-title">Engineering breakdown</h2></div><span class="surface-decoration">↗</span></div>
+            <div class="table-wrap"><table><tbody id="breakdown"></tbody></table></div>
+            <button class="text-button" type="button" id="copySummary">Copy calculation summary <span aria-hidden="true">↗</span></button>
+          </section>
+          <section class="surface detail-card" aria-labelledby="manufacturing-title">
+            <div class="surface-heading"><div><span class="section-index">05 / COSTING</span><h2 id="manufacturing-title">Manufacturing estimate</h2></div><span class="surface-decoration">₨</span></div>
+            <div class="cost-hero"><span>ILLUSTRATIVE RAW MATERIAL + ALLOWANCE</span><strong id="estimatedCost">—</strong><span>IDR · NOT A FABRICATION QUOTE</span></div>
+            <div class="table-wrap"><table><tbody id="costTable"></tbody></table></div>
+            <div class="card-actions"><button class="button small" type="button" id="exportSTL">↓ Mesh STL</button><button class="button small ghost" type="button" id="exportCSV">↓ CSV</button><button class="button small ghost" type="button" id="exportJSON">↓ JSON</button></div>
+          </section>
+          <section class="surface detail-card" id="history-section" aria-labelledby="history-title">
+            <div class="surface-heading"><div><span class="section-index">06 / HISTORY</span><h2 id="history-title">Saved studies <span class="subtle">/ local</span></h2></div><span id="historyCount" class="history-count">00</span></div>
+            <div class="baseline-box"><span>COMPARE CURRENT DESIGN WITH</span><button id="setBaseline" class="button small ghost" type="button">Set as baseline</button><strong id="baselineName">No baseline selected</strong><p id="baselineDiff">Store a reference case to compare the factor of safety and material mass.</p></div>
+            <div id="studyList" class="study-list" aria-live="polite"><p class="empty">No saved studies yet. Save a run to build your design history.</p></div>
+          </section>
+        </div>
+        <section class="method-section" id="method-section" aria-labelledby="method-title"><div><span class="section-index">07 / TRANSPARENCY</span><h2 id="method-title">Equations & engineering scope</h2><p>Every result is computed directly in your browser using deterministic, inspectable equations. No AI estimates or hidden solver calls are involved.</p></div><div class="method-grid"><div><span>01 — BENDING MOMENT</span><strong>M = F L / 4</strong></div><div><span>02 — VON MISES</span><strong>σᵥ = √(σ² + 3τ²)</strong></div><div><span>03 — DEFLECTION</span><strong>δ = F L³ / 48 E I</strong></div><div><span>04 — YIELD FoS</span><strong>n = Sᵧ / σᵥ</strong></div></div><p class="scope-warning">Educational preliminary design only. Excludes fatigue, stress concentrations, keyways, bearing loads, critical speed, thermal loads and manufacturing tolerances. A “PASS” is not a certification or production release.</p></section>
+      </main>
+      <footer><span>MECH.OS <b>/</b> ENGINEERING WORKSPACE</span><span>BUILT ON FIRST PRINCIPLES · v0.2.0</span><span>LOCAL DATA ONLY</span></footer>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

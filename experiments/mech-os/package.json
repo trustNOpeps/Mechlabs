@@ -1,0 +1,11 @@
+{
+  "name": "mech-os-shaft-studio",
+  "version": "0.2.1",
+  "private": true,
+  "type": "commonjs",
+  "description": "Offline-first educational mechanical shaft engineering workbench",
+  "scripts": {
+    "test": "node --test tests/engine.test.cjs",
+    "build": "node scripts/build.cjs"
+  }
+}
