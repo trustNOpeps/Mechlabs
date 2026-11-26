@@ -34,3 +34,15 @@ Release disposition: preliminary educational engineering prototype only; protect
 - Browser navigation to local and intercepted HTTPS URLs is blocked by administrator policy in this execution environment; localStorage cross-reload and real cloud browser E2E still **NOT VERIFIED**.
 - The isolated Vercel build remains READY but corresponds to the earlier commit `f8a928ce1fe72c25f5e734897bdfc533e7aaf623`, not the latest GitHub feature branch. No new deployment was performed during CI repair.
 - Keep pull request `#1` in draft pending browser-accessible QA and explicit release approval.
+
+
+## Public hosting verification — 26 November 2026
+
+- Public address: https://mech-os-shaft-studio-preview.vercel.app/
+- Isolated Vercel project ID: `prj_9GI2Pvgo7Vt6pSgnrGIxfnFAunHH`; deployment `dpl_CtEjdriAdk7b1FWFpgwZeacCKzmV` was READY after the current main branch accessibility contrast change (`85b29866d4e3b31b44fd11cfe606d7fea7207e8f`).
+- Vercel project reports: Vercel Authentication disabled, password protection disabled, trusted IP restriction disabled, domain verified. This is a *public demo* project, not an engineering-certified production system.
+- BrowserStack Website Accessibility Scanner successfully scanned the actual public URL with WCAG 2.2 AA checks, confirming browser-level reachability without a logged-in Vercel session.
+- Initial scan ID 4370080: 92/100 accessibility score; 38 flagged issues.
+- After targeted CSS contrast improvements, scan ID 4370081: 92/100, 26 flagged issues (23 require manual review; 2 are best-practice notes). The reduction in flagged occurrences does **not** establish WCAG conformance. Further manual review is required.
+- BrowserStack live functional E2E tests across Safari/Firefox and browser storage persistence across reloads remain NOT VERIFIED. Prior local Chromium UI tests and GitHub CI were successful before contrast-only CSS changes.
+- Deployment is generated from GitHub main source via explicit Vercel API upload; automatic Git-to-Vercel sync is not configured. Subsequent pushes to GitHub will NOT deploy automatically unless Git integration is added.
