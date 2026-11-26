@@ -1,5 +1,7 @@
 # MECH.OS — Shaft Studio v0.2
 
+**[Public live demo](https://mech-os-shaft-studio-preview.vercel.app/)** · [GitHub Actions](https://github.com/trustNOpeps/Mechlabs/actions) · [Verification status](docs/PROJECT_STATUS.md)
+
 **Mechanical Engineering × Software Engineering.** An offline-first educational engineering workspace for preliminary analysis of a **uniform solid round shaft**. It combines a deterministic calculation engine, interactive rotatable mesh visualization, explicit design checks, saved studies, baseline comparisons, and local file exports.
 
 ## Run
