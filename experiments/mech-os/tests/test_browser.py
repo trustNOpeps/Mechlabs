@@ -139,7 +139,7 @@ class HostedPersistenceChecks(unittest.TestCase):
         cls.thread.start()
         cls.url=f"http://127.0.0.1:{cls.server.server_port}/"
         cls.pw=sync_playwright().start()
-        cls.browser=cls.pw.chromium.launch(headless=True,args=["--no-sandbox"])
+        cls.browser=cls.pw.chromium.launch(executable_path=os.environ.get("MECHOS_CHROMIUM") or cls.pw.chromium.executable_path,headless=True,args=["--no-sandbox"])
 
     @classmethod
     def tearDownClass(cls):
