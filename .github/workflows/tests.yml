@@ -9,3 +9,11 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run test
       - run: bun run build
+      - name: MECH.OS static-shaft numerical tests
+        working-directory: experiments/mech-os
+        run: node --test tests/engine.test.cjs
+      - name: MECH.OS standalone build
+        working-directory: experiments/mech-os
+        run: |
+          node scripts/build.cjs
+          test -s MECH-OS-standalone.html
