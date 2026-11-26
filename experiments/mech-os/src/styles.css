@@ -24,3 +24,6 @@
 @media(max-width:390px){.parameters .field-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.heading-actions .button{font-size:11px;padding:10px}.analysis-main .readout:first-child{grid-column:1/-1}}
 @media(max-width:350px){.parameters .field-grid{grid-template-columns:1fr}.viewport-tools .mini-button{font-size:9px;padding:6px}.heading-row h1{font-size:39px}}
 @media print{.mobile-edit-link,.mobile-orbit-toggle,.rail{display:none!important}.input-group>.field-grid{display:grid!important}.input-group>summary::after{display:none}.input-group{display:block!important}.page{padding-bottom:0!important}}
+
+/* Accessible data table row headers and nonvisual captions. */
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.table-wrap th[scope="row"]{font-weight:400;text-align:left;border-bottom:1px solid #2b3b2e;padding:10px 0;color:#adc0ae}tr:last-child th[scope="row"]{border-bottom:0}
