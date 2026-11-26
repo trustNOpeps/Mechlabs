@@ -6,8 +6,9 @@
 
 1. Open `index.html` in Chrome, Firefox, Safari or Edge. No install, database, API key, browser plugin, cloud account, or internet connection required.
 2. Alternatively serve with `python -m http.server 8000` and navigate to `http://localhost:8000`.
-3. Run `node --test tests/engine.test.cjs` (Node 20+) for numerical tests.
-4. Run `python -m unittest discover -s tests -p test_browser.py -v` for optional browser tests; requires Python Playwright and `/usr/bin/chromium`. These tests inject the standalone HTML into a fresh browser page and check the UI without network. Tests requiring persistent origin storage are not included.
+3. Run `node --test tests/engine.test.cjs` (Node 20+) for numerical tests. The nested `package.json` explicitly isolates the CommonJS engine from the parent TanStack/ESM workspace.
+4. Run `node scripts/build.cjs` to generate `MECH-OS-standalone.html`.
+5. Optionally run `python -m unittest discover -s tests -p test_browser.py -v` after building; requires Python Playwright and a Chromium executable (`MECHOS_CHROMIUM` may override its path). Browser tests inject the standalone HTML into a fresh page; they do not prove persistence across navigation or authenticated cloud browser behavior.
 
 ## Design system
 
