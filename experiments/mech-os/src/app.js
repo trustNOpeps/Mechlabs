@@ -34,7 +34,7 @@
   function setText(id, val) { $(id).textContent = String(val); }
   function setTable(id, rows) {
     const tbody=$(id); tbody.replaceChildren();
-    rows.forEach(([label,value])=>{const tr=document.createElement('tr');const l=document.createElement('td');const v=document.createElement('td');l.textContent=label;v.textContent=value;tr.append(l,v);tbody.appendChild(tr);});
+    rows.forEach(([label,value])=>{const tr=document.createElement('tr');const l=document.createElement('th');l.setAttribute('scope','row');const v=document.createElement('td');l.textContent=label;v.textContent=value;tr.append(l,v);tbody.appendChild(tr);});
   }
   function safeName() { return $('designName').value.trim().slice(0,80) || 'Untitled design'; }
   function resetOutput() {
