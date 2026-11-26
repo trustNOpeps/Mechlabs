@@ -52,26 +52,26 @@
               <label class="field full" for="material"><span>Material preset</span><select id="material"><option value="steel">Generic structural steel · example</option><option value="aluminium">Generic aluminium · example</option><option value="custom">Custom material</option></select></label>
               <details class="input-group" data-group="geometry" open><summary class="form-block-title"><span>GEOMETRY</span><span>MM</span></summary>
               <div class="field-grid">
-                <label class="field" for="diameter"><span>Diameter</span><span class="input-unit"><input type="number" id="diameter" step="any" min="0.1" value="30" required><span>mm</span></span></label>
-                <label class="field" for="span"><span>Support span</span><span class="input-unit"><input type="number" id="span" step="any" min="0.1" value="400" required><span>mm</span></span></label>
+                <label class="field" for="diameter"><span>Diameter</span><span class="input-unit"><input type="number" inputmode="decimal" autocomplete="off" id="diameter" step="any" min="0.1" value="30" required><span>mm</span></span></label>
+                <label class="field" for="span"><span>Support span</span><span class="input-unit"><input type="number" inputmode="decimal" autocomplete="off" id="span" step="any" min="0.1" value="400" required><span>mm</span></span></label>
               </div></details>
               <details class="input-group" data-group="load-conditions" open><summary class="form-block-title"><span>LOAD CONDITIONS</span><span>STATIC</span></summary>
               <div class="field-grid">
-                <label class="field" for="force"><span>Central force</span><span class="input-unit"><input type="number" id="force" step="any" min="0" value="1000" required><span>N</span></span></label>
-                <label class="field" for="torque"><span>Applied torque</span><span class="input-unit"><input type="number" id="torque" step="any" min="0" value="100" required><span>N·m</span></span></label>
+                <label class="field" for="force"><span>Central force</span><span class="input-unit"><input type="number" inputmode="decimal" autocomplete="off" id="force" step="any" min="0" value="1000" required><span>N</span></span></label>
+                <label class="field" for="torque"><span>Applied torque</span><span class="input-unit"><input type="number" inputmode="decimal" autocomplete="off" id="torque" step="any" min="0" value="100" required><span>N·m</span></span></label>
               </div></details>
               <details class="input-group" data-group="material-properties" open><summary class="form-block-title"><span>MATERIAL PROPERTIES</span><span>INPUT DATA</span></summary>
               <div class="field-grid">
-                <label class="field" for="yieldStrength"><span>Yield strength</span><span class="input-unit"><input type="number" id="yieldStrength" step="any" min="0.001" value="250" required><span>MPa</span></span></label>
-                <label class="field" for="elasticModulus"><span>Elastic modulus</span><span class="input-unit"><input type="number" id="elasticModulus" step="any" min="0.001" value="200" required><span>GPa</span></span></label>
-                <label class="field" for="density"><span>Density</span><span class="input-unit"><input type="number" id="density" step="any" min="0.001" value="7850" required><span>kg/m³</span></span></label>
-                <label class="field" for="requiredFoS"><span>Required FoS</span><span class="input-unit"><input type="number" id="requiredFoS" step="any" min="1" value="2" required><span>×</span></span></label>
+                <label class="field" for="yieldStrength"><span>Yield strength</span><span class="input-unit"><input type="number" inputmode="decimal" autocomplete="off" id="yieldStrength" step="any" min="0.001" value="250" required><span>MPa</span></span></label>
+                <label class="field" for="elasticModulus"><span>Elastic modulus</span><span class="input-unit"><input type="number" inputmode="decimal" autocomplete="off" id="elasticModulus" step="any" min="0.001" value="200" required><span>GPa</span></span></label>
+                <label class="field" for="density"><span>Density</span><span class="input-unit"><input type="number" inputmode="decimal" autocomplete="off" id="density" step="any" min="0.001" value="7850" required><span>kg/m³</span></span></label>
+                <label class="field" for="requiredFoS"><span>Required FoS</span><span class="input-unit"><input type="number" inputmode="decimal" autocomplete="off" id="requiredFoS" step="any" min="1" value="2" required><span>×</span></span></label>
               </div></details>
               <details class="input-group" data-group="serviceability-and-cost" open><summary class="form-block-title"><span>SERVICEABILITY & COST</span><span>OPTIONAL</span></summary>
               <div class="field-grid">
-                <label class="field" for="deflectionLimit"><span>Deflection limit</span><span class="input-unit"><input type="number" id="deflectionLimit" step="any" min="0" value="1.5" required><span>mm</span></span></label>
-                <label class="field" for="costPerKg"><span>Material price</span><span class="input-unit"><input type="number" id="costPerKg" step="any" min="0" value="25000" required><span>IDR/kg</span></span></label>
-                <label class="field full" for="allowance"><span>Cost allowance</span><span class="input-unit"><input type="number" id="allowance" step="any" min="0" value="20" required><span>%</span></span></label>
+                <label class="field" for="deflectionLimit"><span>Deflection limit</span><span class="input-unit"><input type="number" inputmode="decimal" autocomplete="off" id="deflectionLimit" step="any" min="0" value="1.5" required><span>mm</span></span></label>
+                <label class="field" for="costPerKg"><span>Material price</span><span class="input-unit"><input type="number" inputmode="decimal" autocomplete="off" id="costPerKg" step="any" min="0" value="25000" required><span>IDR/kg</span></span></label>
+                <label class="field full" for="allowance"><span>Cost allowance</span><span class="input-unit"><input type="number" inputmode="decimal" autocomplete="off" id="allowance" step="any" min="0" value="20" required><span>%</span></span></label>
               </div></details>
               <div id="formError" class="form-error" role="alert" hidden></div>
               <p class="field-note">Presets are illustrative — verify material data independently. A deflection limit of 0 disables the serviceability check.</p>
@@ -98,13 +98,13 @@
         <div class="bottom-grid">
           <section class="surface detail-card" aria-labelledby="detail-title">
             <div class="surface-heading"><div><span class="section-index">04 / DERIVED</span><h2 id="detail-title">Engineering breakdown</h2></div><span class="surface-decoration">↗</span></div>
-            <div class="table-wrap"><table><tbody id="breakdown"></tbody></table></div>
+            <div class="table-wrap"><table><caption class="sr-only">Engineering calculations</caption><tbody id="breakdown"></tbody></table></div>
             <button class="text-button" type="button" id="copySummary">Copy calculation summary <span aria-hidden="true">↗</span></button>
           </section>
           <section class="surface detail-card" aria-labelledby="manufacturing-title">
             <div class="surface-heading"><div><span class="section-index">05 / COSTING</span><h2 id="manufacturing-title">Manufacturing estimate</h2></div><span class="surface-decoration">₨</span></div>
             <div class="cost-hero"><span>ILLUSTRATIVE RAW MATERIAL + ALLOWANCE</span><strong id="estimatedCost">—</strong><span>IDR · NOT A FABRICATION QUOTE</span></div>
-            <div class="table-wrap"><table><tbody id="costTable"></tbody></table></div>
+            <div class="table-wrap"><table><caption class="sr-only">Material cost breakdown</caption><tbody id="costTable"></tbody></table></div>
             <div class="card-actions"><button class="button small" type="button" id="exportSTL">↓ Mesh STL</button><button class="button small ghost" type="button" id="exportCSV">↓ CSV</button><button class="button small ghost" type="button" id="exportJSON">↓ JSON</button></div>
           </section>
           <section class="surface detail-card" id="history-section" aria-labelledby="history-title">
