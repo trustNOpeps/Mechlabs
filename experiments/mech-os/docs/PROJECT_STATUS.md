@@ -22,3 +22,15 @@
 - Draft PR must remain unmerged until reviewed.
 
 Release disposition: preliminary educational engineering prototype only; protected QA build, no industrial/safety certification or public release sign-off.
+
+
+## CI recovery and final verification follow-up — 26 November 2026
+
+- Found a reproducible Node module boundary issue: parent Mechlabs uses `"type":"module"`, but the browser-first `src/engine.js` exposes its CommonJS export only under a CommonJS loader. The original CI attempt (GitHub Actions run #18) failed 8 of 9 MECH.OS test cases due to `TypeError: E.analyze is not a function`.
+- Added a scoped `experiments/mech-os/package.json` with `"type":"commonjs"` without changing the parent package, math engine, or existing application.
+- Reproduced the failure under a parent ESM package locally, then verified the scoped override: 12/12 local numerical tests pass and standalone build succeeds.
+- GitHub Actions run #20 (commit `a96d7038914f833d92616d64a7f894339d70439e`) completed **SUCCESS**: parent Mechlabs tests/build and new MECH.OS tests/build all passed.
+- Added the optional 7-test Chromium browser suite to this branch for reproducibility; requires Python Playwright and an installed Chromium browser. It is *not* part of GitHub CI because the workflow does not provision browser dependencies.
+- Browser navigation to local and intercepted HTTPS URLs is blocked by administrator policy in this execution environment; localStorage cross-reload and real cloud browser E2E still **NOT VERIFIED**.
+- The isolated Vercel build remains READY but corresponds to the earlier commit `f8a928ce1fe72c25f5e734897bdfc533e7aaf623`, not the latest GitHub feature branch. No new deployment was performed during CI repair.
+- Keep pull request `#1` in draft pending browser-accessible QA and explicit release approval.
