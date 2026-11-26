@@ -6,6 +6,10 @@
 
 A small browser-first toolkit for tensile-calculation learning, unit conversions, user-entered material comparisons and local experiment records.
 
+## Engineering software experiments
+
+- **[MECH.OS — Shaft Studio](experiments/mech-os/)** — [Public live demo](https://mech-os-shaft-studio-preview.vercel.app/) · interactive preliminary shaft design, 3D mesh preview, deterministic stress/deflection checks, and engineering exports. Built as a separate offline-first application; it does not alter the MechLabs Lovable demo.
+
 ## Modules
 - **Workbench:** engineering stress σ = F/A₀ and strain ε = ΔL/L₀, XY chart, clearly synthetic sample data and CSV export.
 - **Unit Lab:** N/kN/lbf, MPa/Pa/GPa/psi, mm/cm/m/in.
