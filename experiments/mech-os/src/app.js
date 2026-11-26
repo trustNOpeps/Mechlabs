@@ -9,7 +9,7 @@
   const BASELINE_KEY = 'mech-os/v0.2/baseline';
   const f = (n, digits=2) => Number.isFinite(n) ? n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:digits}) : '∞';
   const money = (n) => 'Rp ' + f(n,0);
-  let current = null, baseline = null, wireframe = false, angle = 0.59, pitch = 0.31, dragging = null, toastTimeout = 0;
+  let current = null, baseline = null, wireframe = false, angle = 0.59, pitch = 0.31, dragging = null, orbitTouch = false, toastTimeout = 0;
   const canvas = $('shaftCanvas');
   const ctx = canvas.getContext('2d', { alpha:false });
   const materialFields = ['yieldStrength','elasticModulus','density'];
@@ -199,10 +199,11 @@
     ctx.textAlign='start';
     $('viewTheta').textContent=Math.round(angle*180/Math.PI)+'°';$('viewPhi').textContent=Math.round(pitch*180/Math.PI)+'°';
   }
-  function attachOrbit(){canvas.addEventListener('pointerdown',e=>{dragging={x:e.clientX,y:e.clientY,angle,pitch};canvas.setPointerCapture(e.pointerId);});
+  function attachOrbit(){canvas.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'&&!orbitTouch)return;dragging={x:e.clientX,y:e.clientY,angle,pitch};canvas.setPointerCapture(e.pointerId);});
     canvas.addEventListener('pointermove',e=>{if(!dragging)return;angle=dragging.angle+(e.clientX-dragging.x)*.009;pitch=Math.max(-1.1,Math.min(1.1,dragging.pitch+(e.clientY-dragging.y)*.007));drawModel();});
     const stop=()=>dragging=null;canvas.addEventListener('pointerup',stop);canvas.addEventListener('pointercancel',stop);
     canvas.tabIndex=0;canvas.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();angle+=(e.key==='ArrowRight'?.12:e.key==='ArrowLeft'?-.12:0);pitch=Math.max(-1.1,Math.min(1.1,pitch+(e.key==='ArrowDown'?.12:e.key==='ArrowUp'?-.12:0)));drawModel();});
+    $('toggleTouchOrbit').addEventListener('click',()=>{orbitTouch=!orbitTouch;canvas.classList.toggle('orbit-touch-enabled',orbitTouch);$('toggleTouchOrbit').setAttribute('aria-pressed',String(orbitTouch));$('toggleTouchOrbit').textContent=orbitTouch?'Orbit: on':'Orbit: off';});
     $('resetView').addEventListener('click',()=>{angle=.59;pitch=.31;drawModel();});
     $('toggleWire').addEventListener('click',()=>{wireframe=!wireframe;$('toggleWire').setAttribute('aria-pressed',String(wireframe));$('toggleWire').textContent=wireframe?'Shaded':'Wireframe';drawModel();});
     window.addEventListener('resize',()=>{if(current)drawModel();else drawPlaceholder();});
@@ -221,6 +222,12 @@
     attachOrbit();
     const savedBaseline=storageGet(BASELINE_KEY,null);
     if(savedBaseline&&savedBaseline.p){try{baseline={name:String(savedBaseline.name||'Baseline'),p:savedBaseline.p,r:E.analyze(savedBaseline.p)};}catch{baseline=null;}}
+    // Keep routine controls reachable while optional details remain compact on phones.
+    if(window.matchMedia('(max-width:680px)').matches){
+      for(const group of document.querySelectorAll('.input-group')) {
+        if(['material-properties','serviceability-and-cost'].includes(group.dataset.group)) group.open=false;
+      }
+    }
     render();renderStudies();
   }
   initialize();

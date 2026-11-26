@@ -1,4 +1,4 @@
-# MECH.OS — Shaft Studio v0.2
+# MECH.OS — Shaft Studio v0.3
 
 **[Public live demo](https://mech-os-shaft-studio-preview.vercel.app/)** · [GitHub Actions](https://github.com/trustNOpeps/Mechlabs/actions) · [Verification status](docs/PROJECT_STATUS.md)
 
@@ -11,6 +11,15 @@
 3. Run `node --test tests/engine.test.cjs` (Node 20+) for numerical tests. The nested `package.json` explicitly isolates the CommonJS engine from the parent TanStack/ESM workspace.
 4. Run `node scripts/build.cjs` to generate `MECH-OS-standalone.html`.
 5. Optionally run `python -m unittest discover -s tests -p test_browser.py -v` after building; requires Python Playwright and a Chromium executable (`MECHOS_CHROMIUM` may override its path). Browser tests inject the standalone HTML into a fresh page; they do not prove persistence across navigation or authenticated cloud browser behavior.
+
+## Mobile-first interaction (v0.3)
+
+- Mobile displays the main engineering results before the design input form. A prominent **Edit parameters** link jumps directly to input fields.
+- Geometry and load inputs are initially expanded; material properties and serviceability/cost fields are collapsible on phones to reduce scrolling.
+- Five-module navigation moves to a bottom touch bar with 44+ px touch targets.
+- The geometry canvas defaults to normal vertical page scrolling on touch screens. **Orbit: off/on** explicitly enables touch rotation and disables touch scrolling only inside the canvas while active. Desktop mouse orbit and keyboard arrow navigation remain available.
+- Small phone widths 320–430 px have responsive, accessible input columns and action controls.
+- CI additionally runs Chromium browser tests, checking mobile layout, exports, and saved-studies persistence across actual HTTP page reloads. See [GitHub Actions](https://github.com/trustNOpeps/Mechlabs/actions).
 
 ## Design system
 
@@ -63,7 +72,7 @@ tests/test_browser.py optional Chromium browser functional checks
 ## Release milestones
 
 - v0.1: single shaft static yield + CSV/STL baseline
-- **v0.2: industrial UI + live rotatable geometry + input validation + deflection threshold + local saved runs + baseline + reporting + tests**
+- v0.2: industrial UI + live rotatable geometry + input validation + deflection threshold + local saved runs + baseline + reporting + tests\n- **v0.3: mobile results-first workflow + collapsible parameter groups + touch orbit toggle + bottom navigation + extended browser CI**
 - v0.3: independent mechanics validation tables, manufacturing geometry variants, real CAD via optional CadQuery service, DXF/STEP, and controlled preview deployment
 - v1.0: engineering verification, documentation, accessibility and QA review, provenance, releases
 

@@ -5,7 +5,7 @@
   else root.MechEngine = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
-  const VERSION = '0.2.0';
+  const VERSION = '0.3.0';
   const DEFAULT = Object.freeze({
     diameter: 30, span: 400, force: 1000, torque: 100,
     yieldStrength: 250, elasticModulus: 200, density: 7850,
